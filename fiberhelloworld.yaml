@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: fiberhelloworld
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: test
+  template:
+    metadata:
+      labels:
+        app: test
+    spec:
+      containers:
+        - name: test
+          image: elangreza14/fiberhelloworld
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: test-srv
+spec:
+  selector:
+    app: test
+  ports:
+    - name: test
+      protocol: TCP
+      port: 8080
+      targetPort: 8080
